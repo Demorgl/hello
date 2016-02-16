@@ -27,7 +27,7 @@ namespace TestWork
         public double CalcTriangleSquare(ITriangle triangle)
         {
  	        double p = (triangle.SideA + triangle.SideB + triangle.SideC) / 2;
-
+ 
             return Math.Sqrt(p * (p - triangle.SideA) * (p - triangle.SideB) * (p - triangle.SideC));
         }
     }
