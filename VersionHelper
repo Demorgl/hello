@@ -1,0 +1,158 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ExportImport;
+
+import Configuration.ParusConfiguration.IParusObject;
+import ExportImport.ExportParus.ExportNrnClass;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+/**
+ *
+ * @author belyaev
+ */
+public class VersionHelper {
+    
+    private static List<String> importPackageList;
+    private static List<String> exportPackageList;
+    private static String versionDate;
+    private static boolean init = false;
+
+    public static void init(String version) {
+        versionDate = version;
+        init = false;
+    }
+    
+    private static List<String> collectPackage(Document doc, String xpath1) throws XPathExpressionException {
+        List<String> tmpList = new LinkedList<>();
+
+        XPath xpath = XPathFactory.newInstance().newXPath();
+
+        NodeList nList = (NodeList)xpath.compile(xpath1).evaluate(doc, XPathConstants.NODESET);
+
+        for(int idx = 0; idx < nList.getLength(); idx++) {
+            Node n = nList.item(idx);
+
+            NamedNodeMap nodeMap = n.getAttributes();
+
+            String pckg = null;
+            String version = null;
+            for(int jdx = 0; jdx < nodeMap.getLength(); jdx++) {
+                Node attr = nodeMap.item(jdx);
+
+                switch (attr.getNodeName()) {
+                    case "name":
+                        pckg = attr.getNodeValue();
+                        break;
+                    case "version":
+                        version = attr.getNodeValue();
+                        break;
+                }
+            }
+
+            if (versionDate.compareTo(version) >= 0)
+                tmpList.add(pckg);
+        }
+        
+        return tmpList;
+    }    
+    
+    private static void initList() {
+        if (init != false)
+            return;
+        try {
+            init = true;
+            
+            File fXmlFile = new File("packageList.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+            
+            importPackageList = collectPackage(doc, "PackageList/Import/Package");
+            exportPackageList = collectPackage(doc, "PackageList/Export/Package");
+        } catch (SAXException | IOException | XPathExpressionException | ParserConfigurationException ex) {
+            Logger.getLogger(VersionHelper.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
+    public static ImportNrnClass getImporter(String name, Long nrn) {
+        initList();
+        
+        String fullname = null;
+        ListIterator<String> listIter = importPackageList.listIterator(importPackageList.size());
+        while(listIter.hasPrevious()) {
+            fullname = listIter.previous() + "." + name;
+            try {
+                Class refClass = Class.forName(fullname);
+                //Если такого класса нет, перейдет в обработчик исключений, если такой класс есть, значит он нам и нужен, сразу выходим из цикла
+                break;
+            } catch (ClassNotFoundException ex) {
+            }
+        }
+
+        Object obj = null;  
+        try {
+            Class refClass = Class.forName(fullname);
+            obj = refClass.getDeclaredConstructor(Long.class).newInstance(nrn);
+        } catch (InvocationTargetException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | ClassNotFoundException ex) {
+            Logger.getLogger(VersionHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (obj != null && obj instanceof ImportNrnClass)
+            return (ImportNrnClass)obj;
+        
+        return null;
+    }
+    
+    public static ExportNrnClass getExporter(String name, IParusObject pObject) {
+        initList();
+        
+        String fullname = null;
+        ListIterator<String> listIter = exportPackageList.listIterator(exportPackageList.size());
+        while(listIter.hasPrevious()) {
+            fullname = listIter.previous() + "." + name;
+            try {
+                Class refClass = Class.forName(fullname);
+                //Если такого класса нет перейдет в обработчик исключений, если такой класс есть, значит он нам и нужен, сразу выходим из цикла
+                break;
+            } catch (ClassNotFoundException ex) {
+            }
+        }
+
+        Object obj = null;  
+        Class refClass;
+        Constructor c;
+        try {
+            refClass = Class.forName(fullname);
+            c = refClass.getDeclaredConstructor(pObject.getClass());
+            obj = c.newInstance(pObject);
+        } catch (InvocationTargetException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | ClassNotFoundException ex) {
+            Logger.getLogger(VersionHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (obj != null && obj instanceof ExportNrnClass)
+            return (ExportNrnClass)obj;
+        
+        return null;
+    }
+}
