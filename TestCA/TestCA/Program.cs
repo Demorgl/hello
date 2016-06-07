@@ -11,6 +11,9 @@ namespace TestCA
         static void Main(string[] args)
         {
             // Кодируем из гитхаба
+
+
+            //изменение
         }
     }
 }
