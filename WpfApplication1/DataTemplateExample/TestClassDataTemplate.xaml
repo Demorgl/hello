@@ -1,8 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:WpfApplication1">
+                    xmlns:dataTemplateExample="clr-namespace:DataTemplateExample"
+                    >
 
-    <DataTemplate  x:Key="TestClassTemplate" DataType="local:TestClass">
+    <DataTemplate  x:Key="TestClassTemplate" DataType="dataTemplateExample:TestClass">
         <Border Padding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBox}, Path=Margin}"
                 Background="Chocolate">
             <StackPanel >

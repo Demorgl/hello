@@ -1,7 +1,6 @@
-﻿using NUnit;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace WpfApplication1.Tests
+namespace WpfApplication1Tests
 {
     [TestFixture()]
     public class MainWindowTests

@@ -1,21 +1,21 @@
-﻿<Window x:Class="WpfApplication1.MainWindow"
+﻿<Window x:Class="DataTemplateExample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:wpfApplication1="clr-namespace:WpfApplication1"
+        xmlns:dataTemplateExample="clr-namespace:DataTemplateExample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" d:DataContext="{d:DesignInstance wpfApplication1:AllClass}">
+        Title="MainWindow" Height="350" Width="525" d:DataContext="{d:DesignInstance dataTemplateExample:AllClass}">
 
     <Window.Resources>
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Dictionary1.xaml"/>
+                <ResourceDictionary Source="TestClassDataTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <wpfApplication1:AllClass x:Key="AllClass"></wpfApplication1:AllClass>
-            <DataTemplate x:Key="aaa" DataType="wpfApplication1:TestClass">
+            <dataTemplateExample:AllClass x:Key="AllClass"></dataTemplateExample:AllClass>
+            <DataTemplate x:Key="aaa" DataType="dataTemplateExample:TestClass">
                 <StackPanel>
                     <Button Content="{Binding Str}" Click="ButtonBase_OnClick" Tag="{Binding Intt}"></Button>
                 </StackPanel>
@@ -53,3 +53,4 @@
         <Button Grid.Row="2" Width="100" Height="20" Click="Button_Click"></Button>
     </Grid>
 </Window>
+
