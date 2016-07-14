@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "WpfApplication1\WpfApplication1.csproj", "{642B73AD-55D6-4348-A85C-8D44B21E79BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTemplateExample", "DataTemplateExample\DataTemplateExample.csproj", "{642B73AD-55D6-4348-A85C-8D44B21E79BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1Tests", "WpfApplication1Tests\WpfApplication1Tests.csproj", "{791685C3-0A25-4C01-8D7B-3ABFC6CC3388}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{642B73AD-55D6-4348-A85C-8D44B21E79BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{642B73AD-55D6-4348-A85C-8D44B21E79BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{642B73AD-55D6-4348-A85C-8D44B21E79BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{791685C3-0A25-4C01-8D7B-3ABFC6CC3388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{791685C3-0A25-4C01-8D7B-3ABFC6CC3388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{791685C3-0A25-4C01-8D7B-3ABFC6CC3388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{791685C3-0A25-4C01-8D7B-3ABFC6CC3388}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

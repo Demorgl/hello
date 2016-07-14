@@ -1,0 +1,17 @@
+﻿<Application x:Class="WpfApplication1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApplication1"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+            <Color x:Key="ControlMouseOverColor" R="150" G="20" B="150"/>
+            <Color x:Key="ControlPressedColor" R="50" G="5" B="100"/>
+            <Color x:Key="PressedBorderDarkColor" R="200" G="100" B="100"/>
+            <Color x:Key="PressedBorderLightColor" R="200" G="200" B="100"/>
+            <Color x:Key="DisabledControlDarkColor" R="100" G="200" B="100"/>
+            <Color x:Key="DisabledForegroundColor" R="100" G="200" B="100"/>
+            <Color x:Key="DisabledBorderDarkColor" R="100" G="200" B="100"/>
+    </Application.Resources>
+</Application>

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApplication1
+namespace Base64Decode
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,8 +23,13 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+        }
 
-            
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var result = Base64.Decode(TbIn.Text);
+
+            TbOut.Text = result;
         }
     }
 }

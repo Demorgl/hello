@@ -1,0 +1,43 @@
+﻿<Window x:Class="WpfApplication1.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <DataTemplate x:Key="ButtonContentTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="20" Height="10" Fill="BlueViolet"></Ellipse>
+                <Grid Height="8" Width="8">
+                    
+                    <Path HorizontalAlignment="Stretch" Margin="0,0,1.8,1.8" 
+           VerticalAlignment="Stretch" Stretch="Fill" Stroke="#FF000000" 
+           Data="M0.5,5.7 L0.5,0.5 L5.7,0.5"/>
+                    <Path HorizontalAlignment="Stretch" Margin="2,3,0,0" 
+           VerticalAlignment="Stretch" Stretch="Fill" Stroke="#FFFFFFFF" 
+           Data="M3.2,7.5 L7.5,7.5 L7.5,3.5"/>
+                    <Path HorizontalAlignment="Stretch" Margin="1.2,1.4,0.7,0.7" 
+           VerticalAlignment="Stretch" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" 
+           Data="M2.5,2.5 L7.5,7.5"/>
+                    <Path HorizontalAlignment="Stretch" Margin="1.7,2.0,1,1" 
+           VerticalAlignment="Stretch" Stretch="Fill" Stroke="#FF000000" 
+           Data="M3,7.5 L7.5,7.5 L7.5,3.5"/>
+                    <Path HorizontalAlignment="Stretch" Margin="1,1,1,1" 
+           VerticalAlignment="Stretch" Stretch="Fill" Stroke="#FFFFFFFF" 
+           Data="M1.5,6.5 L1.5,1 L6.5,1.5"/>
+                </Grid>
+                <ContentPresenter Content="{Binding}"/>
+            </StackPanel>
+        </DataTemplate>
+        <ControlTemplate TargetType="Button" x:Key="ButtonControlTemplate">
+            <Grid>
+                <Ellipse Fill="{TemplateBinding Background}"/>
+                <ContentPresenter HorizontalAlignment="Center"
+              VerticalAlignment="Center"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    <StackPanel>
+        <Button Template="{StaticResource ButtonControlTemplate}" ContentTemplate="{StaticResource ButtonContentTemplate}" Content="1"/>
+        <Button Template="{StaticResource ButtonControlTemplate}" ContentTemplate="{StaticResource ButtonContentTemplate}" Content="2"/>
+        <Button Template="{StaticResource ButtonControlTemplate}" ContentTemplate="{StaticResource ButtonContentTemplate}" Content="3"/>
+    </StackPanel>
+</Window>
