@@ -34,7 +34,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>1470666238_64bit.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Quorus.Cryptography.CertificateChecker, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b391f4a9fa8de577, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Quorus\Quorus.Cryptography.CertificateChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Quorus.Cryptography.DetachedSignature, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d1d43394d93ca62, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Quorus\Quorus.Cryptography.DetachedSignature.dll</HintPath>
+    </Reference>
+    <Reference Include="Quorus.Cryptography.Signature, Version=2.0.0.0, Culture=neutral, PublicKeyToken=82e21bffc62f8881, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Quorus\Quorus.Cryptography.Signature.dll</HintPath>
+    </Reference>
+    <Reference Include="Quorus.Cryptography.Unification, Version=2.0.0.0, Culture=neutral, PublicKeyToken=387a928ff9940dd8, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Quorus\Quorus.Cryptography.Unification.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -64,6 +83,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Base64.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -98,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="1470666238_64bit.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
